@@ -2,6 +2,7 @@ package com.example.forage.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.preference.PreferenceFragmentCompat
 import com.example.forage.R
 
 class SettingsActivity : AppCompatActivity() {
