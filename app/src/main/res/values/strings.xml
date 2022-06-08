@@ -41,4 +41,9 @@
     <string name="attachment_summary_on">Automatically download attachments for incoming emails
     </string>
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
+
+    <!-- add -->
+    <string name="good_habit_voice">voice for good habits</string>
+    <string name="bad_habit_voice">voice for bad habits</string>
+
 </resources>

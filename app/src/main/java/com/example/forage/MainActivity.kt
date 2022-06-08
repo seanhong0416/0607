@@ -14,10 +14,15 @@
  * limitations under the License.
  */
 package com.example.forage
-/**/
+
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Button
+import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -44,6 +49,18 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         appBarConfiguration = AppBarConfiguration(navController.graph)
         setupActionBarWithNavController(navController, appBarConfiguration)
+
+        val btnBack: Button = findViewById(R.id.btnBack)
+
+        btnBack.setOnClickListener {
+
+            val intent = Intent()
+                .setType("*/*")
+                .setAction(Intent.ACTION_GET_CONTENT)
+
+            startActivityForResult(Intent.createChooser(intent, "Select a file"), 111)
+
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -67,4 +84,19 @@ class MainActivity : AppCompatActivity() {
         return navController.navigateUp(appBarConfiguration)
                 || super.onSupportNavigateUp()
     }
+
+    private var requestcode = 111;
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == requestcode && resultCode == RESULT_OK) {
+            val selectedFile = data?.data //The uri with the location of the file
+            val toast_text = selectedFile.toString()
+            val toast = Toast.makeText(this, toast_text, Toast.LENGTH_SHORT)
+            toast.show()
+        }
+
+    }
+
 }
